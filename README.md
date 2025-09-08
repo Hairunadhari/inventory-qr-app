@@ -22,7 +22,7 @@ This app allows users to **generate QR Codes** for each item and then **scan the
 ---
 
 ## Screenshots
-![Home Screenshot](./assets/home.png)
-![Add Form Screenshot](./assets/add.png)
-![Edit Form Screenshot](./assets/edit.png)
-![Scan  Screenshot](./assets/scan.png)
+![Home Page Screenshot](./assets/homePage.png)
+![Add Form Screenshot](./assets/addform.png)
+![Edit Form Screenshot](./assets/editform.png)
+![Scan Page  Screenshot](./assets/scanPage.png)
