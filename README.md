@@ -8,7 +8,6 @@ This app allows users to **generate QR Codes** for each item and then **scan the
 ## ✨ Features
 - ➕ Add new items with details (name, stock, price).
 - 🔄 Update & delete items.
-- 📊 Real-time stock monitoring.
 - 📷 Scan QR Codes to quickly search items.
 - 📥 Incoming & 📤 Outgoing items automatically update stock.
 - 🔔 Notifications with **toast UI**.
