@@ -1,24 +1,8 @@
-# 📦 Inventory QR App
+# React + Vite
 
-**Inventory QR App** is a simple application built with **ReactJS, Node.js, and MongoDB** to manage product stock using a **QR Code system**.  
-This app allows users to **generate QR Codes** for each item and then **scan them** with a camera to quickly record incoming and outgoing products.
+This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
 
----
+Currently, two official plugins are available:
 
-## ✨ Features
-- ➕ Add new items with details (name, stock, price).
-- 🔄 Update & delete items.
-- 📊 Real-time stock monitoring.
-- 📷 Scan QR Codes to quickly search items.
-- 📥 Incoming & 📤 Outgoing items automatically update stock.
-- 🔔 Notifications with **toast UI**.
-
----
-
-## 🛠️ Tech Stack
-- **Frontend**: ReactJS, TailwindCSS  
-- **Backend**: Node.js, Express  
-- **Database**: MongoDB  
-
----
-
+- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
+- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh

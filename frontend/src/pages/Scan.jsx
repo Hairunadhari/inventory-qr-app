@@ -81,7 +81,7 @@ function Scan() {
       {isModalOpen && item && (
         <div className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50">
           <div className="bg-white rounded-xl shadow-lg p-6 w-96">
-            <h2 className="text-xl font-semibold mb-2">Scan Berhasil 🎉</h2>
+            <h2 className="text-xl font-semibold mb-2">Scan Success 🎉</h2>
             <form onSubmit={handleSubmit} className="space-y-3">
               <input
                 type="text"
@@ -110,13 +110,13 @@ function Scan() {
               />
               <hr />
              <label htmlFor="stockOut" className="block mb-1 font-medium text-gray-700">
-              Masukkan Stok Keluar
+              Stock Out
             </label>
             <input
               type="number"
               id="stockOut"
               name="stockOut"
-              placeholder="Contoh: 2"
+              placeholder="Example: 2"
               className="w-full border p-2 rounded focus:outline-none focus:ring-2 focus:ring-blue-500"
             />
 
@@ -127,13 +127,13 @@ function Scan() {
                   onClick={() => setIsModalOpen(false)}
                   className="px-4 py-2 bg-gray-300 rounded hover:bg-gray-400"
                 >
-                  Batal
+                  Cancel
                 </button>
                 <button
                   type="submit"
                   className="px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-600"
                 >
-                  Simpan
+                  Save
                 </button>
               </div>
             </form>
