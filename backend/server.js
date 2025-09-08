@@ -87,6 +87,49 @@ app.delete('/api/item/:id', async (req, res) => {
   }
 });
 
+// api get item by scanner
+app.get('/api/get-item-by-scanner/:id', async (req, res) => {
+  try {
+    const { id } = req.params; // ambil id dari URL
+    const item = await QrItem.findById(id); // cari item di MongoDB berdasarkan _id
+
+    if (!item) {
+      return res.status(404).json({ message: 'Item not found' });
+    }
+    res.json({item}); // kirim data item ke client
+  } catch (err) {
+    res.status(500).json({ message: err.message });
+  }
+});
+
+app.post("/api/barang-keluar", async (req, res) => {
+  try {
+    const { _id, stockOut } = req.body;
+
+    // cari item berdasarkan ID
+    const item = await QrItem.findById(_id);
+    if (!item) {
+      return res.status(404).json({ message: "Item tidak ditemukan" });
+    }
+
+    // cek stok cukup
+    if (item.stock < stockOut) {
+      return res.status(400).json({ message: "Stok tidak mencukupi" });
+    }
+
+    // kurangi stok
+    item.stock -= stockOut;
+    await item.save();
+
+    res.json({
+      message: "Barang keluar berhasil dicatat",
+      updatedItem: item,
+    });
+  } catch (err) {
+    res.status(500).json({ message: "Terjadi kesalahan server", error: err.message });
+  }
+});
+
 
 app.listen(5000, () => {
     console.log('Server running on port 5000');

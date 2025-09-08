@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react";
 import axios from "axios";
+import toast from "react-hot-toast";
 
 function ModalForm({isOpen, onClose, initialData, onSuccess}){
     const [formData, setFormData] = useState({
@@ -37,8 +38,11 @@ function ModalForm({isOpen, onClose, initialData, onSuccess}){
             }
             onSuccess();
             onClose();
+            toast.success('Item saved successfully');
+            setFormData({ name: "", stock: "", price: "" }); // reset form
         } catch (error) {
             console.error("Error submitting form:", error);
+            toast.error("Terjadi kesalahan");
         }
     };
     if(!isOpen) return null;
@@ -47,14 +51,14 @@ function ModalForm({isOpen, onClose, initialData, onSuccess}){
         <div className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50">
             <div className="bg-white p-6 rounded-lg w-96 shadow-lg">
             <h2 className="text-xl font-bold mb-4">
-            {initialData ? "Edit Item" : "Tambah Item"}
+            {initialData ? "Edit Item" : "Add Item"}
             </h2>
         
             <form onSubmit={handleSubmit} className="space-y-3">
             <input
                 type="text"
                 name="name"
-                placeholder="Nama Barang"
+                placeholder="Name Item"
                 value={formData.name}
                 onChange={handleChange}
                 className="w-full border p-2 rounded"
@@ -62,7 +66,7 @@ function ModalForm({isOpen, onClose, initialData, onSuccess}){
             <input
                 type="number"
                 name="stock"
-                placeholder="Stok"
+                placeholder="Stock"
                 value={formData.stock}
                 onChange={handleChange}
                 className="w-full border p-2 rounded"
@@ -70,7 +74,7 @@ function ModalForm({isOpen, onClose, initialData, onSuccess}){
             <input
                 type="number"
                 name="price"
-                placeholder="Harga"
+                placeholder="Price"
                 value={formData.price}
                 onChange={handleChange}
                 className="w-full border p-2 rounded"
@@ -82,13 +86,13 @@ function ModalForm({isOpen, onClose, initialData, onSuccess}){
                 onClick={onClose}
                 className="px-4 py-2 bg-gray-300 rounded hover:bg-gray-400"
                 >
-                Batal
+                Close
                 </button>
                 <button
                 type="submit"
                 className="px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-600"
                 >
-                {initialData ? "Update" : "Simpan"}
+                {initialData ? "Update" : "Save"}
                 </button>
             </div>
             </form>

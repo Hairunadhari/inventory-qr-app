@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import axios from "axios";
 import ModalForm from "../components/ModalForm";
 import ModalQrcode from "../components/ModalQrcode";
+import toast from "react-hot-toast";
 
 function Home() {
   const [items, setItems] = useState([]);
@@ -21,6 +22,7 @@ function Home() {
     try {
       await axios.delete(`http://localhost:5000/api/item/${id}`);
       getItems(); // refresh list setelah hapus
+      toast.success('Item deleted successfully');
     } catch (error) {
       console.error("Error deleting item:", error);
     }
@@ -39,18 +41,18 @@ function Home() {
         }}
         className="px-4 py-2 bg-green-500 text-white rounded hover:bg-green-600"
       >
-        + Tambah Item
+        + Add New
       </button>
-  <h1 className="text-xl font-bold mb-4">Daftar Barang</h1>
+  <h1 className="text-xl font-bold mb-4">List Items</h1>
   <div className="overflow-x-auto shadow-md rounded-lg">
     <table className="min-w-full border border-gray-300 text-sm">
       <thead className="bg-gray-100 text-gray-700">
         <tr>
-          <th className="border border-gray-300 px-4 py-2 text-left">ID</th>
-          <th className="border border-gray-300 px-4 py-2 text-left">Nama</th>
-          <th className="border border-gray-300 px-4 py-2 text-left">Stok</th>
-          <th className="border border-gray-300 px-4 py-2 text-left">Harga</th>
-          <th className="border border-gray-300 px-4 py-2 text-left">Opsi</th>
+          <th className="border border-gray-300 px-4 py-2 text-left">Id Code</th>
+          <th className="border border-gray-300 px-4 py-2 text-left">Name</th>
+          <th className="border border-gray-300 px-4 py-2 text-left">Stock</th>
+          <th className="border border-gray-300 px-4 py-2 text-left">Price</th>
+          <th className="border border-gray-300 px-4 py-2 text-left">Action</th>
         </tr>
       </thead>
       <tbody>
@@ -74,11 +76,12 @@ function Home() {
                 onClick={() => deleteItem(item._id)}
                 className="bg-red-500 hover:bg-red-600 text-white px-3 py-1 rounded"
               >
-                Hapus
+                Delete
               </button>
               <button
                 onClick={() => {
                   setIsModalQrcodeOpen(true);
+                  setSelectedItem(item);
                 }} 
                className="bg-yellow-500 px-3 py-1 rounded text-white ml-2">Print Code</button>
               </td>
@@ -93,7 +96,9 @@ function Home() {
         initialData={selectedItem}
         onSuccess={getItems}
       />
-      <ModalQrcode isOpen={isModalQrcodeOpen}/>
+      <ModalQrcode isOpen={isModalQrcodeOpen}  onClose={() => setIsModalQrcodeOpen(false) }
+        id={selectedItem ? selectedItem._id : ""}
+        />
   </div>
    
 </div>
